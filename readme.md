@@ -25,7 +25,7 @@
 4. Clone code to your own computer
 ```shell
     cd <your_project_folder>
-    git clone ssh://kangnwh@vs-ssh.visualstudio.com:v3/kangnwh/MobileBackend/MobileBackend
+    git clone kangnwh@vs-ssh.visualstudio.com:v3/kangnwh/MobileBackend/MobileBackend
 ```   
 5. *unmark src folder as source and mark folder java (src/main/java) as source* 
 
