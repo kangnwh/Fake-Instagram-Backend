@@ -35,3 +35,13 @@ Open [this](https://kangnwh.visualstudio.com/MobileBackend/MobileBackend%20Team/
 
 #### how to run (internal)
 Just run `/src/main/java/com/unimelb/mobile/eric/SnsbackendApplication.java`
+
+#### Server Info
+db: 123.56.22.40:3306/sns/pw4mobile
+
+#### Pending Tasks
+1. Requirement Analysis
+2. Database modelling
+3. Api Design
+4. Security Control
+5. Request Validation

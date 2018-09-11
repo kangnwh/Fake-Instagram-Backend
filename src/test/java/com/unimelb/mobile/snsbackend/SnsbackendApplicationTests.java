@@ -1,6 +1,7 @@
-package com.unimelb.mobile.eric.snsbackend;
+package com.unimelb.mobile.snsbackend;
 
-import com.unimelb.mobile.eric.controllers.HomeController;
+
+import com.unimelb.mobile.controllers.PostController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -25,7 +25,7 @@ public class SnsbackendApplicationTests {
 
 	@Before
 	public void set() {
-		mvc = MockMvcBuilders.standaloneSetup(new HomeController()).build();
+		mvc = MockMvcBuilders.standaloneSetup(new PostController()).build();
 	}
 
 	@Test
@@ -33,6 +33,14 @@ public class SnsbackendApplicationTests {
 		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().string(equalTo("Hello World")));
+	}
+
+	@Test
+	public void userTester() throws Exception{
+//		mvc.perform(MockMvcRequestBuilders.get("/users/"))
+//				.andExpect(status().isOk())
+//				.andExpect(content().string(equalTo("[]")));
+
 	}
 
 }

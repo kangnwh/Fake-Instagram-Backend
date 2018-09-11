@@ -1,15 +1,17 @@
-package com.unimelb.mobile.eric;
-
-import com.unimelb.mobile.eric.controllers.HomeController;
+package com.unimelb.mobile;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
+
+
 
 @SpringBootApplication
-@ComponentScan(basePackageClasses = HomeController.class)
 public class SnsbackendApplication {
 
+
 	public static void main(String[] args) {
+
 		SpringApplication.run(SnsbackendApplication.class, args);
 	}
+
 }
