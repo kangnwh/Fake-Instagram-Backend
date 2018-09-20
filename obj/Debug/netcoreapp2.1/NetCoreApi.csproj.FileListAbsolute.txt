@@ -1,0 +1,13 @@
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.csproj.CoreCompileInputs.cache
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.RazorAssemblyInfo.cache
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.RazorAssemblyInfo.cs
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.AssemblyInfoInputs.cache
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.AssemblyInfo.cs
+/Users/eric/Documents/projects/mobile/NetCoreApi/bin/Debug/netcoreapp2.1/NetCoreApi.deps.json
+/Users/eric/Documents/projects/mobile/NetCoreApi/bin/Debug/netcoreapp2.1/NetCoreApi.runtimeconfig.json
+/Users/eric/Documents/projects/mobile/NetCoreApi/bin/Debug/netcoreapp2.1/NetCoreApi.runtimeconfig.dev.json
+/Users/eric/Documents/projects/mobile/NetCoreApi/bin/Debug/netcoreapp2.1/NetCoreApi.dll
+/Users/eric/Documents/projects/mobile/NetCoreApi/bin/Debug/netcoreapp2.1/NetCoreApi.pdb
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.RazorTargetAssemblyInfo.cache
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.dll
+/Users/eric/Documents/projects/mobile/NetCoreApi/obj/Debug/netcoreapp2.1/NetCoreApi.pdb
