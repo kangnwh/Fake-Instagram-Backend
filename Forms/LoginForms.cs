@@ -4,6 +4,11 @@ using NetCoreApi.Model;
 
 namespace NetCoreApi.Forms
 {
+
+    enum GenderEnum {
+        Female ,
+        Male
+    }
     public class LoginForm
     {
         [Required]

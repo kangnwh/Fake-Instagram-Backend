@@ -53,7 +53,7 @@ db: 123.56.22.40:3306/sns/pw4mobile
 #### Pending Tasks
 
 - [ ] Requirement Analysis
-- [ ] Database modelling
+- [x] Database modelling
 - [ ] Api Design
 - [x] Security Control
 - [ ] Request Validation

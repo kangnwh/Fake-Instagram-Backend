@@ -11945,17 +11945,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/eric/Documents/projects/mobile/NetCoreApi/NetCoreApi.csproj",
+      "projectUniqueName": "/Users/eric/Documents/projects/mobile/MobileBackend/NetCoreApi.csproj",
       "projectName": "NetCoreApi",
-      "projectPath": "/Users/eric/Documents/projects/mobile/NetCoreApi/NetCoreApi.csproj",
+      "projectPath": "/Users/eric/Documents/projects/mobile/MobileBackend/NetCoreApi.csproj",
       "packagesPath": "/Users/eric/.nuget/packages/",
-      "outputPath": "/Users/eric/Documents/projects/mobile/NetCoreApi/obj",
+      "outputPath": "/Users/eric/Documents/projects/mobile/MobileBackend/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/eric/.config/NuGet/NuGet.Config"
+        "/Users/eric/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -11977,46 +11977,46 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "2.1",
-            "autoReferenced": true
-          },
           "CryptoHelper": {
             "target": "Package",
-            "version": "3.0.2"
+            "version": "[3.0.2, )"
           },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.1.1"
+            "version": "[2.1.1, )",
+            "autoReferenced": true
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
-            "version": "2.1.2"
+            "version": "[2.1.2, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "target": "Package",
-            "version": "2.1.3"
+            "version": "[2.1.3, )"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
-            "version": "2.1.3"
+            "version": "[2.1.3, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers",
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.1.3"
+            "version": "[2.1.3, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.1.0, )",
+            "autoReferenced": true
           },
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
-            "version": "2.1.2"
+            "version": "[2.1.2, )"
           },
           "System.Configuration": {
             "target": "Package",
-            "version": "2.0.5"
+            "version": "[2.0.5, )"
           }
         },
         "imports": [

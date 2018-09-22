@@ -1,0 +1,45 @@
+#get the photo list which the current user like
+Type: GET
+parameter:{
+	"token": token,
+	"currentUsrid": usrid
+}
+body[
+	{
+		"postid":postid,
+		"postUsrid":usrid,
+		"postUsrName": usrName,
+		"comment":comment,
+		"datetime":time
+	}
+]
+
+#get the usr who the current usr are following
+Type: GET
+parameter:{
+	"token":token,
+	"currentUsrid":usrid
+}
+body[
+	{
+		"usrid":usrid, #the usr who current usr are following
+		"usrName":usrName
+	}
+]
+
+#get the all activity of the usr who the current usr are following
+Type: GET
+parameter:{
+	"token":token,
+	"currentUsrid":usrid
+}
+body[
+	{
+		"usrid": usrid,
+		"usrName": usrName,
+		"postid":postid
+		"postTime": time
+		"comment": comment
+		"commentTime": time
+	}
+]

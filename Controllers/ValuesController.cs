@@ -14,9 +14,9 @@ namespace NetCoreApi.Controllers
     public class ValuesController : ControllerBase
     {
 
-        snsContext db;
+        MobileDbContext db;
 
-        public ValuesController (snsContext snsDb) {
+        public ValuesController (MobileDbContext snsDb) {
             db = snsDb;
         }
 
@@ -28,17 +28,7 @@ namespace NetCoreApi.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [HttpGet("dbtest")]
-        
-        public string dbtest()
-        {
-            Debug.WriteLine("dbtest");
-            string a = "";
-            foreach(Role r in db.Role.ToList()){
-                a += r.RoleName + "\n";
-            }
-            return a;
-        }
+
 
         // GET api/values/5
         [HttpGet("{id}")]
