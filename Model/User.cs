@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using NetCoreApi.Forms;
 
 namespace NetCoreApi.Model
 {
@@ -15,6 +16,18 @@ namespace NetCoreApi.Model
             Image = new HashSet<Image>();
             Post = new HashSet<Post>();
             UserLikePost = new HashSet<UserLikePost>();
+        }
+
+        
+        public User(SignupForm signupForm)
+        {
+            this.Username = signupForm.Username;
+            this.Password = signupForm.Password;
+            this.Name = signupForm.Name;
+            this.Email = signupForm.Email;
+            this.Phone = signupForm.Phone;
+            this.Dob = signupForm.Dob;
+            this.Gender = signupForm.Gender;
         }
 
         [Column("id", TypeName = "int(11)")]
@@ -54,4 +67,7 @@ namespace NetCoreApi.Model
         [InverseProperty("User")]
         public ICollection<UserLikePost> UserLikePost { get; set; }
     }
+
+
+
 }

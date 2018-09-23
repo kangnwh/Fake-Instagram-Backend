@@ -1,18 +1,23 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace NetCoreApi.Model
 {
-    public partial class snsContext : DbContext
+    public partial class MobileDbContext : DbContext
     {
-        public snsContext()
-        {
-        }
+        private IConfiguration _configuration;
 
-        public snsContext(DbContextOptions<snsContext> options)
+        // public MobileDbContext(IConfiguration Configuration)
+        // {
+        //     _configuration = Configuration;
+        // }
+
+        public MobileDbContext(DbContextOptions<MobileDbContext> options,IConfiguration Configuration)
             : base(options)
         {
+            this._configuration = Configuration;
         }
 
         public virtual DbSet<Comment> Comment { get; set; }
@@ -26,8 +31,7 @@ namespace NetCoreApi.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=13.211.229.245;port=3306;database=sns;uid=sns;password=pw4mobile");
+                optionsBuilder.UseMySql(this._configuration.GetConnectionString("mobiledb"));
             }
         }
 

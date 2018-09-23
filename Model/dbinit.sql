@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS  `sns`.`User` ;
 CREATE TABLE IF NOT EXISTS `sns`.`User` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NULL,
   `phone` VARCHAR(45) NULL,
