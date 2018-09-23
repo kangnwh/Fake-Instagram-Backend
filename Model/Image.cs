@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NetCoreApi.Model
+namespace MobileBackend.Model
 {
     public partial class Image
     {
+
+
         [Column("id", TypeName = "int(11)")]
         public int Id { get; set; }
         [Column("postId", TypeName = "int(11)")]
@@ -14,7 +16,7 @@ namespace NetCoreApi.Model
         [Column("userId", TypeName = "int(11)")]
         public int UserId { get; set; }
         [Column("imageURL", TypeName = "varchar(45)")]
-        public string ImageUrl { get; set; }
+        public string ImageUrl { set; get;}
         [Column("createDate", TypeName = "datetime")]
         public DateTime? CreateDate { get; set; }
 

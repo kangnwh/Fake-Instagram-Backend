@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using NetCoreApi.Forms;
+using MobileBackend.Forms;
 
-namespace NetCoreApi.Model
+namespace MobileBackend.Model
 {
     public partial class User
     {

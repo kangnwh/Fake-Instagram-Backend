@@ -6,13 +6,14 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using NetCoreApi.Model;
+using MobileBackend.Model;
 using CryptoHelper;
 using System.Diagnostics;
-using NetCoreApi.Forms;
+using MobileBackend.Forms;
 using System.Collections;
+using System.Collections.Generic;
 
-namespace NetCoreApi.Controllers
+namespace MobileBackend.Controllers
 {
     
     [Route("api/[controller]")]
@@ -56,9 +57,11 @@ namespace NetCoreApi.Controllers
 
 
             // If user is verified, add claims into token
-            Claim[] userInfoClaims = new Claim[]{} ;
-            userInfoClaims.Append(new Claim(ClaimTypes.Name,user.Username));
-
+            List<Claim> userInfoClaims = new List<Claim>();
+            // Claim[] userInfoClaims = new Claim[]{} ;
+            userInfoClaims.Add(new Claim(ClaimTypes.Name,user.Username));
+            userInfoClaims.Add(new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()));
+            
 
             //foreach (var r in user.UserRole.ToList())
             //{
@@ -86,7 +89,6 @@ namespace NetCoreApi.Controllers
         /// <param name="signupForm"></param>
         [HttpPost("sign-up")]
         public IActionResult Signup([FromBody]SignupForm Signup){
-
 
             if(!ModelState.IsValid){
                 return BadRequest(ModelState);

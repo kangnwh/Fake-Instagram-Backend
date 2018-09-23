@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NetCoreApi.Model;
+using MobileBackend.Model;
 
-namespace NetCoreApi.Controllers
+namespace MobileBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,8 +21,9 @@ namespace NetCoreApi.Controllers
         }
 
         // GET api/values
-        [HttpGet]
         
+        [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };

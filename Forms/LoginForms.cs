@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System;
-using NetCoreApi.Model;
+using MobileBackend.Model;
 
-namespace NetCoreApi.Forms
+namespace MobileBackend.Forms
 {
 
     enum GenderEnum {

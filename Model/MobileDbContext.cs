@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 
-namespace NetCoreApi.Model
+namespace MobileBackend.Model
 {
     public partial class MobileDbContext : DbContext
     {

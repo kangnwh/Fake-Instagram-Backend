@@ -13,10 +13,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-// using NetCoreApi.Models;
 using Microsoft.EntityFrameworkCore;
-using NetCoreApi.Model;
+using MobileBackend.Model;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace NetCoreApi
 {
@@ -40,8 +41,9 @@ namespace NetCoreApi
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(cfg =>
                 {
+                    cfg.SaveToken = true;
                     cfg.TokenValidationParameters = new TokenValidationParameters()
-                    {
+                    {   
                         ValidateIssuer = true,
                         ValidIssuer = Configuration["Security:Tokens:Issuer"],
                         ValidateAudience = true,
@@ -49,7 +51,6 @@ namespace NetCoreApi
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Security:Tokens:Key"])),
-                    
                     };
                 });
             services.AddSingleton(Configuration);
@@ -60,6 +61,10 @@ namespace NetCoreApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "SNS API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme { In = "header", Description = "Please enter JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
+            c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
+                { "Bearer", Enumerable.Empty<string>() },
+            });
             });
 
             
@@ -77,6 +82,7 @@ namespace NetCoreApi
                 app.UseHsts();
             }
             
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
