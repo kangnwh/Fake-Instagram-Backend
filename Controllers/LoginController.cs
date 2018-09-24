@@ -55,18 +55,11 @@ namespace MobileBackend.Controllers
                 return BadRequest("Invalid password");
             }
 
-
             // If user is verified, add claims into token
             List<Claim> userInfoClaims = new List<Claim>();
             // Claim[] userInfoClaims = new Claim[]{} ;
             userInfoClaims.Add(new Claim(ClaimTypes.Name,user.Username));
             userInfoClaims.Add(new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()));
-            
-
-            //foreach (var r in user.UserRole.ToList())
-            //{
-            //        userInfoClaims.Append(new Claim(ClaimTypes.Role,r.Role.RoleName));
-            //}
                 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Security:Tokens:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -75,7 +68,7 @@ namespace MobileBackend.Controllers
                 claims:userInfoClaims,
                 issuer:configuration["Security:Tokens:Issuer"],
                 audience:configuration["Security:Tokens:Audience"],
-                expires: DateTime.Now.AddMinutes(5),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials:creds
                 );
 
@@ -95,7 +88,6 @@ namespace MobileBackend.Controllers
             }
 
             Signup.Password = Crypto.HashPassword(Signup.Password);
-
 
             User newUser = new User(Signup);
             db.User.Add(newUser);

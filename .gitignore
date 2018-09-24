@@ -27,8 +27,8 @@
 .DS_Store
 /.vscode/
 /.vs/
-/bin/
-/obj/
+/bin/*
+/obj/*
 /wwwroot/photos/
 run.sh
 launchSettings.json

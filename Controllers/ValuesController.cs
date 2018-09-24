@@ -9,13 +9,16 @@ using MobileBackend.Model;
 
 namespace MobileBackend.Controllers
 {
+    /// <summary>
+    /// Test usage
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
 
         MobileDbContext db;
-
+        
         public ValuesController (MobileDbContext snsDb) {
             db = snsDb;
         }
