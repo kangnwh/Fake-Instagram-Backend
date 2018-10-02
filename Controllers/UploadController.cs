@@ -35,7 +35,7 @@ namespace MobileBackend.Controllers
             if (file.Length > 0)
             {
                 var userId = User.CurrentUserId();
-                var FileName = $"{userId}{DateTime.Now.ToString("yyyy_MM_ddTHH_mm_ss")}";
+                var FileName = $"{userId}{DateTime.Now.ToString("yyyy_MM_ddTHH_mm_ss")}{file.FileName}";
                 using (var fileStream = new FileStream(Path.Combine(uploads, FileName), FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
