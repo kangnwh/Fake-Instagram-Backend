@@ -2,6 +2,8 @@
 
 [TOC]
 
+
+
 ## How to use in IOS:
 
 ```swift
@@ -174,18 +176,14 @@ url:defualtUrl/usr/unlike
 parameter:
 1. (token in header, see `How to use in IOS`)
 2. "postid" : postid
+返回
 
-```
-
-
-
-##### 返回
-
-```json
 body{
     "res":0 or 1
 }
 ```
+
+
 
 
 

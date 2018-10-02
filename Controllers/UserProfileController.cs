@@ -40,6 +40,7 @@ namespace MobileBackend.Controllers
                 return BadRequest("User name claim error, cannot find username");
             }
             
+
             var postCount = db.Post.Where(p => p.UserId == userId).Count();
             var followerCount = db.FollowRelation.Where( f => f.To == userId).Count();
             var followingCount = db.FollowRelation.Where(f => f.From == userId).Count();
