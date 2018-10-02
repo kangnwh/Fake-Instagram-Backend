@@ -1,1 +1,1 @@
-nuhup dotnet run &
+nohup dotnet run &
