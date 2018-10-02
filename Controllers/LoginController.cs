@@ -76,6 +76,12 @@ namespace MobileBackend.Controllers
             return Ok(tokenString);
         }
 
+        [HttpGet("login")]
+        public IActionResult LoginForTest(string username, string password){
+            LoginForm loginUser = new LoginForm {Username = username, Password = password};
+            return Login(loginUser);
+        }
+
         /// <summary>
         /// Sign Up (Register) interface
         /// </summary>

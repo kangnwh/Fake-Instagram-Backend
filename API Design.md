@@ -2,7 +2,7 @@
 
 [TOC]
 
-How to use in IOS:<#T##TextRow#>
+## How to use in IOS:
 
 ```swift
 let accessToken = "veryCoolToken"
@@ -15,9 +15,7 @@ request.setValue("Basic " + accessToken, forHTTPHeaderField: "Authorization")
 
 
 
-
-
-#### Post/Upload Photo
+## Post/Upload Photo
 
 ```json
 Type: POST
@@ -41,9 +39,7 @@ body[
 
 
 
-
-
-#### Activity Feed
+## Activity Feed
 
 ##### get the photo list which the current user like
 
@@ -103,9 +99,7 @@ body[
 ]
 ```
 
-
-
-#### User Feed
+## User Feed
 
 #### 获取刷新内容
 
@@ -213,7 +207,7 @@ parameter:
 
 
 
-#### User Profile
+## User Profile
 
 ##### Display stats on posts, followers and following, profile pic
 

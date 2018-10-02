@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MobileBackend.Model;
@@ -17,8 +18,6 @@ namespace MobileBackend.Controllers
         private IConfiguration configuration;
         private MobileDbContext db;
 
-
- 
         public UserProfileController(IConfiguration _configuration, MobileDbContext _db)
         {
             configuration = _configuration;
