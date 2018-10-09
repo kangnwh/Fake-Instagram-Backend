@@ -93,6 +93,10 @@ namespace MobileBackend.Controllers
                 return BadRequest(ModelState);
             }
 
+            if(db.User.Where(u => u.Username == Signup.Username).FirstOrDefault() != null){
+                return BadRequest($"Username {Signup.Username} already exists.");
+            }
+
             Signup.Password = Crypto.HashPassword(Signup.Password);
 
             User newUser = new User(Signup);

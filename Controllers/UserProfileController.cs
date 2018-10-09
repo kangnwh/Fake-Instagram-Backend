@@ -37,18 +37,20 @@ namespace MobileBackend.Controllers
             var userId = User.CurrentUserId();
             if(userId < 0) 
             {
-                return BadRequest("User name claim error, cannot find username");
+                return BadRequest("User Id claim error, cannot find username");
             }
             
 
             var postCount = db.Post.Where(p => p.UserId == userId).Count();
             var followerCount = db.FollowRelation.Where( f => f.To == userId).Count();
             var followingCount = db.FollowRelation.Where(f => f.From == userId).Count();
+            var avatar = db.User.Find(userId).AvatarUrl;
 
-            var resultDict = new Dictionary<string, int>();
+            var resultDict = new Dictionary<string, object>();
             resultDict.Add("postCount",postCount);
             resultDict.Add("followerCount",followerCount);
             resultDict.Add("followingCount",followingCount);
+            resultDict.Add("avatar",avatar);
             return new JsonResult ( resultDict );
 
         }
@@ -67,17 +69,16 @@ namespace MobileBackend.Controllers
                 return BadRequest("User name claim error, cannot find username");
             }
             
-            var photoList = db.Image.Where(i => i.UserId == userId).ToList();
+            var photoList = db.Image.Where(i => i.UserId == userId).OrderByDescending(i => i.CreateDate).ToList();
 
-            List<Dictionary<string,string>> imgList = new List<Dictionary<string, string>>();
+            List<string> imgList = new List<string>();
 
             foreach (Image photo in photoList){
-                var onePhoto = new Dictionary<string, string>();
-                onePhoto.Add("img",photo.ImageUrl);
-                imgList.Add(onePhoto);
+                // var onePhoto = new Dictionary<string, string>();
+                // onePhoto.Add("img",photo.ImageUrl);
+                imgList.Add(photo.ImageUrl);
             }
-
-            return new JsonResult ( imgList );
+            return new JsonResult ( new { image = imgList} );
 
         }
 
