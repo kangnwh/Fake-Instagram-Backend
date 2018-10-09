@@ -25,3 +25,17 @@
 /Users/eric/Documents/projects/mobile/MobileBackend/obj/Debug/netcoreapp2.1/NetCoreApi.dll
 /Users/eric/Documents/projects/mobile/MobileBackend/obj/Debug/netcoreapp2.1/NetCoreApi.pdb
 /Users/eric/Documents/projects/mobile/MobileBackend/obj/Debug/netcoreapp2.1/NetCoreApi.csprojAssemblyReference.cache
+D:\Code\Visual Studio\MobileBackend\bin\Debug\netcoreapp2.1\NetCoreApi.deps.json
+D:\Code\Visual Studio\MobileBackend\bin\Debug\netcoreapp2.1\NetCoreApi.runtimeconfig.json
+D:\Code\Visual Studio\MobileBackend\bin\Debug\netcoreapp2.1\NetCoreApi.runtimeconfig.dev.json
+D:\Code\Visual Studio\MobileBackend\bin\Debug\netcoreapp2.1\NetCoreApi.dll
+D:\Code\Visual Studio\MobileBackend\bin\Debug\netcoreapp2.1\NetCoreApi.pdb
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.csprojAssemblyReference.cache
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.csproj.CoreCompileInputs.cache
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.RazorAssemblyInfo.cache
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.RazorAssemblyInfo.cs
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.AssemblyInfoInputs.cache
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.AssemblyInfo.cs
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.RazorTargetAssemblyInfo.cache
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.dll
+D:\Code\Visual Studio\MobileBackend\obj\Debug\netcoreapp2.1\NetCoreApi.pdb

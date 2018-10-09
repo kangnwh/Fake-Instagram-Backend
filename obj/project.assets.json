@@ -12052,28 +12052,33 @@
     ]
   },
   "packageFolders": {
-    "/Users/eric/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\linia\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/eric/Documents/projects/mobile/MobileBackend/NetCoreApi.csproj",
+      "projectUniqueName": "D:\\Code\\Visual Studio\\MobileBackend\\NetCoreApi.csproj",
       "projectName": "NetCoreApi",
-      "projectPath": "/Users/eric/Documents/projects/mobile/MobileBackend/NetCoreApi.csproj",
-      "packagesPath": "/Users/eric/.nuget/packages/",
-      "outputPath": "/Users/eric/Documents/projects/mobile/MobileBackend/obj/",
+      "projectPath": "D:\\Code\\Visual Studio\\MobileBackend\\NetCoreApi.csproj",
+      "packagesPath": "C:\\Users\\linia\\.nuget\\packages\\",
+      "outputPath": "D:\\Code\\Visual Studio\\MobileBackend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/eric/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\linia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
