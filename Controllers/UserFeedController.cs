@@ -113,5 +113,73 @@ namespace MobileBackend.Controllers
             db.SaveChanges();
             return Ok("Leave comment successfully");
         }
+
+        [HttpPost("refresh")]
+        public IActionResult refresh(){
+             var userId = User.CurrentUserId();
+            var r1 = (from u in db.User
+                    join fo in db.FollowRelation on u.Id equals fo.To
+                    join po in db.Post on u.Id equals po.UserId
+                    join image in db.Image on po.Id equals image.PostId
+                     where fo.From == userId 
+                    orderby po.CreateDate 
+                    select new {
+                        postUserId = u.Id,
+                        postContent = po.Content,
+                        postId = po.Id,
+                        img = image.ImageUrl,
+                    }
+                    ).Take(10).ToList();
+
+            var r2 = (from post in r1
+                    // join com in db.Comment on post.postId equals com.PostId into comEmpty
+                    //     from com in comEmpty.DefaultIfEmpty()
+
+                    // join likes in db.UserLikePost 
+                    //     on post.postId equals likes.PostId into lempty
+                    //     from likes in lempty.DefaultIfEmpty()
+
+                    // join likeUser in db.User on likes.UserId equals likeUser.Id into lkuserEmpty
+                    //     from likeUser in lkuserEmpty.DefaultIfEmpty()
+                    select new {
+                        postuserId = post.postUserId,
+                        postId = post.postId,
+                        img = post.img,
+                        likeCount = db.UserLikePost.Where( ul => ul.PostId == post.postId).Count(),
+                        likeUserList = (from ul01 in db.UserLikePost 
+                                        join u01 in db.User on ul01.UserId equals u01.Id
+                                        where post.postId == ul01.PostId
+                                        select u01.Username).ToList(),
+                        comments = (from com01 in db.Comment 
+                                    join u02 in db.User on com01.UserId equals u02.Id
+                                    where com01.PostId == post.postId
+                                    select new {
+                                        userid = u02.Id,
+                                        username = u02.Username,
+                                        content = com01.Content,
+                                        datetime = com01.CreateDate
+                                    }).ToList()
+
+                    }
+            ).ToList();
+
+            // var r = (from u in db.User
+            //         join fo in db.FollowRelation on u.Id equals fo.To
+            //         join po in db.Post on u.Id equals po.UserId
+            //         join image in db.Image on po.Id equals image.PostId
+            //         join com in db.Comment on po.Id equals com.PostId
+            //         join likes in db.UserLikePost on po.Id equals likes.PostId
+            //         join likeUser in db.User on likes.UserId equals likeUser.Id
+
+            //         where fo.From == userId 
+            //         orderby po.CreateDate 
+            //         select new {
+            //             postUserId = u.Id,
+            //             postId = po.Id,
+            //             img = image.ImageUrl,
+            //         }).Take(10).ToList();
+
+            return new JsonResult ( r2 );
+        }
     }
 }

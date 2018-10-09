@@ -32,3 +32,12 @@
 /wwwroot/photos/
 run.sh
 launchSettings.json
+obj/Debug/netcoreapp2.1/NetCoreApi.csprojResolveAssemblyReference.cache
+.vs/NetCoreApi/xs/UserPrefs.xml
+.vs/NetCoreApi/xs/sqlite3/storage.ide-shm
+.vs/NetCoreApi/xs/sqlite3/storage.ide-wal
+obj/NetCoreApi.csproj.nuget.cache
+obj/NetCoreApi.csproj.nuget.g.props
+obj/project.assets.json
+obj/Debug/netcoreapp2.1/NetCoreApi.csproj.FileListAbsolute.txt
+obj/Debug/netcoreapp2.1/NetCoreApi.csprojAssemblyReference.cache

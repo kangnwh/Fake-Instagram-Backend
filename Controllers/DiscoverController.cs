@@ -50,10 +50,8 @@ namespace MobileBackend.Controllers
                                 avatarUrl = u.AvatarUrl,
                             };
 
-            // var r = from u in db.User
-            //         join f in db.FollowRelation
-            //         on u.Id equals f.To
-            //         where f.From == userId 
+            
+
 
 
             // TODO 
