@@ -7,9 +7,21 @@ parameter:{
 body[
 	{
 		"postid":postid,
-		"postUsrid":usrid,
-		"postUsrName": usrName,
-		"comment":comment,
+		"postUserId":usrid,
+		"postUserName": usrName,
+		"img":imgURL
+		"comments":[
+            {   "userid": usrID,
+                "username" : username,
+                "content" : content,[]
+                "datetime"  : time
+            },
+            {   "userid": usrID,
+                "username" : username,
+                "content" : content,
+                "datetime"  : time
+            }
+        ]
 		"datetime":time
 	}
 ]
@@ -22,8 +34,8 @@ parameter:{
 }
 body[
 	{
-		"usrid":usrid, #the usr who current usr are following
-		"usrName":usrName
+		"userId":usrid, #the usr who current usr are following
+		"userName":usrName
 	}
 ]
 
@@ -35,8 +47,8 @@ parameter:{
 }
 body[
 	{
-		"usrid": usrid,
-		"usrName": usrName,
+		"userId": usrid,
+		"userName": usrName,
 		"postid":postid
 		"postTime": time
 		"comment": comment

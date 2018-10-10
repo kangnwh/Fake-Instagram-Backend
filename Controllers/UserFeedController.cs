@@ -26,16 +26,7 @@ namespace MobileBackend.Controllers
             env = _env;
         }
 
-        /// <summary>
-        /// for Scroll through photos and comments
-        /// [Authorization required]
-        /// </summary>
-        //public iactionresult refreshcontent()
-        //{
-        //    var userid = user.currentuserid();
-        //    // question: whose posts will be return?
-        //}
-
+        
         /// <summary>
         /// set "like" to current post
         /// [Authorization required]
@@ -45,14 +36,14 @@ namespace MobileBackend.Controllers
         {
             var userId = User.CurrentUserId();
             if (postId < 0)
-                return BadRequest("User name claim error, cannot find PostID");
+                return BadRequest("PostId claim error, cannot find PostID");
 
             UserLikePost like = new UserLikePost();
             like.UserId = userId;
             like.PostId = postId;
             Post post = db.Post.Where(p => p.Id == postId).FirstOrDefault();
             if (post == null)
-                return BadRequest("User name claim error, cannot find PostID");
+                return BadRequest("PostId claim error, cannot find PostID");
 
             like.PostUserId = post.UserId;
             like.CreateDate = DateTime.Now;
@@ -70,14 +61,14 @@ namespace MobileBackend.Controllers
         {
             var userId = User.CurrentUserId();
             if (postId < 0)
-                return BadRequest("User name claim error, cannot find PostID");
+                return BadRequest("PostId claim error, cannot find PostID");
 
             UserLikePost like = new UserLikePost();
             like.UserId = userId;
             like.PostId = postId;
             Post post = db.Post.Where(p => p.Id == postId).FirstOrDefault();
             if (post == null)
-                return BadRequest("User name claim error, cannot find PostID");
+                return BadRequest("PostId claim error, cannot find PostID");
 
             like.PostUserId = post.UserId;
             like.CreateDate = DateTime.Now;
@@ -95,9 +86,9 @@ namespace MobileBackend.Controllers
         {
             var userId = User.CurrentUserId();
             if (postId < 0)
-                return BadRequest("User name claim error, cannot find PostID");
+                return BadRequest("PostId claim error, cannot find PostID");
             if (db.Post.Find(postId) == null)
-                return BadRequest("User name claim error, cannot find PostID");
+                return BadRequest("PostId claim error, cannot find PostID");
 
             Comment comment = new Comment();
             comment.PostId = postId;
@@ -116,7 +107,7 @@ namespace MobileBackend.Controllers
 
         [HttpPost("refresh")]
         public IActionResult refresh(){
-             var userId = User.CurrentUserId();
+            var userId = User.CurrentUserId();
             var r1 = (from u in db.User
                     join fo in db.FollowRelation on u.Id equals fo.To
                     join po in db.Post on u.Id equals po.UserId

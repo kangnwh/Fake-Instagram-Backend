@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -50,14 +51,45 @@ namespace MobileBackend.Controllers
                                 avatarUrl = u.AvatarUrl,
                             };
 
-            
-
-
-
             // TODO 
             // Need apply algorithm
 
             return new JsonResult ( new { users = suggest.ToList()} );
+        }
+
+        /// <summary>
+        /// let user to follow other user
+        /// </summary>
+        [HttpPost("followUser")]
+        public IActionResult FollowUser(int userId)
+        {
+            var myUserId = User.CurrentUserId();
+            if (db.User.Find(userId) == null)
+                return BadRequest("UserId claim error, cannot find UserId");
+            FollowRelation follow = new FollowRelation();
+            follow.From = myUserId;
+            follow.To = userId;
+            follow.CreateDate = DateTime.Now;
+            db.FollowRelation.Add(follow);
+            db.SaveChanges();
+            return Ok("Following user successfully");
+        }
+
+        /// <summary>
+        /// let user to cancel the follow relationship with other user
+        /// </summary>
+        [HttpPost("cancelFollowUser")]
+        public IActionResult CancelFollowUser(int userId)
+        {
+            var myUserId = User.CurrentUserId();
+            if (db.User.Find(userId) == null)
+                return BadRequest("UserId claim error, cannot find UserId");
+            FollowRelation follow = new FollowRelation();
+            follow.From = myUserId;
+            follow.To = userId;
+            db.FollowRelation.Remove(follow);
+            db.SaveChanges();
+            return Ok("Cancel the Follow relationship successfully");
         }
     }
 }
