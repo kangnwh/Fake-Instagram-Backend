@@ -24,7 +24,7 @@ namespace MobileBackend.Controllers
             db = _db;
             env = _env;
         }
-
+        [HttpPost("index")]
         public IActionResult Index(){
 
             var userId = User.CurrentUserId();

@@ -106,8 +106,13 @@ namespace MobileBackend.Controllers
         }
 
         [HttpPost("refresh")]
-        public IActionResult refresh(){
-            var userId = User.CurrentUserId();
+        public IActionResult refresh(int userId = -1)
+        {
+            if (userId == -1)
+                userId = User.CurrentUserId();
+            else if (db.User.Find(userId) == null)
+                return BadRequest("UserId claim error, cannot find UserId");
+
             var r1 = (from u in db.User
                     join fo in db.FollowRelation on u.Id equals fo.To
                     join po in db.Post on u.Id equals po.UserId
