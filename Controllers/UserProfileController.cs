@@ -61,14 +61,30 @@ namespace MobileBackend.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("myphotos")]
-        public IActionResult MyPhotos()
+        public IActionResult MyPhotos(int uId = -1)
         {   
             var userId = User.CurrentUserId();
+            if(uId > 0){
+                userId = uId ;
+            }
+            
             if(userId < 0) 
             {
                 return BadRequest("User name claim error, cannot find username");
             }
             
+            var myPosts = db.Post.Where( i=> i.UserId == userId).OrderByDescending(i => i.CreateDate).ToList();
+            var pJson = (from p in db.Post
+                            join i in db.Image on p.Id equals i.PostId
+                        select new {
+                            postUserId = p.UserId,
+                            postId = p.Id,
+                            img = i.ImageUrl,
+                            postContent = p.Content,
+                            postLocation = p.Location,
+                            postTime = p.CreateDate,
+                            comments = p.Comment
+                        }).ToList();
             var photoList = db.Image.Where(i => i.UserId == userId).OrderByDescending(i => i.CreateDate).ToList();
 
             List<string> imgList = new List<string>();
@@ -78,7 +94,7 @@ namespace MobileBackend.Controllers
                 // onePhoto.Add("img",photo.ImageUrl);
                 imgList.Add(photo.ImageUrl);
             }
-            return new JsonResult ( new { image = imgList} );
+            return new JsonResult ( pJson );
 
         }
 
