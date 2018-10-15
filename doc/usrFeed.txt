@@ -6,6 +6,7 @@ lat 和 log 不为必填
 body:#返回格式
 [
     {   "postUserName": postUsername
+		"avatarImageURL": avatarImageURL
 		"postContent": content
 		"postTime":postCreateTime
 		"img": imageUrl

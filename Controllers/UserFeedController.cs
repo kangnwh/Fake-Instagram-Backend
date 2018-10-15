@@ -122,6 +122,7 @@ namespace MobileBackend.Controllers
                     select new {
                         postUserId = u.Id,
                         postUsername = u.Name,
+                        postUserAvatarURL = u.AvatarUrl,
                         postContent = po.Content,
                         postId = po.Id,
                         img = image.ImageUrl,
@@ -142,6 +143,7 @@ namespace MobileBackend.Controllers
                     select new {
                         postuserId = post.postUserId,
                         postUsername = post.postUsername,
+                        avatarImageURL = post.postUserAvatarURL,
                         postId = post.postId,
                         postContent = post.postContent,
                         img = post.img,
