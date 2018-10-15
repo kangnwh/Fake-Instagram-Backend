@@ -118,7 +118,7 @@ namespace MobileBackend.Controllers
                     join po in db.Post on u.Id equals po.UserId
                     join image in db.Image on po.Id equals image.PostId
                      where fo.From == userId 
-                    orderby po.CreateDate 
+                    orderby po.CreateDate descending
                     select new {
                         postUserId = u.Id,
                         postUsername = u.Name,
