@@ -121,12 +121,14 @@ namespace MobileBackend.Controllers
                     orderby po.CreateDate 
                     select new {
                         postUserId = u.Id,
+                        postUsername = u.Name,
                         postContent = po.Content,
                         postId = po.Id,
                         img = image.ImageUrl,
+                        postTime = po.CreateDate,
+                        postLocation = po.Location,
                     }
                     ).Take(10).ToList();
-
             var r2 = (from post in r1
                     // join com in db.Comment on post.postId equals com.PostId into comEmpty
                     //     from com in comEmpty.DefaultIfEmpty()
@@ -139,8 +141,12 @@ namespace MobileBackend.Controllers
                     //     from likeUser in lkuserEmpty.DefaultIfEmpty()
                     select new {
                         postuserId = post.postUserId,
+                        postUsername = post.postUsername,
                         postId = post.postId,
+                        postContent = post.postContent,
                         img = post.img,
+                        postTime = post.postTime,
+                        postLocation = post.postLocation,
                         likeCount = db.UserLikePost.Where( ul => ul.PostId == post.postId).Count(),
                         likeUserList = (from ul01 in db.UserLikePost 
                                         join u01 in db.User on ul01.UserId equals u01.Id

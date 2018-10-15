@@ -5,7 +5,11 @@ lat 和 log 不为必填
 
 body:#返回格式
 [
-    {   "img": imageUrl
+    {   "postUserName": postUsername
+		"postContent": content
+		"postTime":postCreateTime
+		"img": imageUrl
+		"postLocation":postCreateLocation
         "like": num
         "likesender":["usr1","usr2"，"usr3"] #显示前3个点赞的用户
         "comments": [
