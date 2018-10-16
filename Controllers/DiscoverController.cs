@@ -38,6 +38,7 @@ namespace MobileBackend.Controllers
             var follows = from u in db.User
                                 join f in db.FollowRelation
                                 on u.Id equals f.From   
+                                where u.Id == userId
                                 select f.To;
 
             var suggest = from u in db.User
@@ -69,7 +70,14 @@ namespace MobileBackend.Controllers
             var myUserId = User.CurrentUserId();
             if (db.User.Find(userId) == null)
                 return BadRequest($"Cannot find UserId {userId}");
-            FollowRelation follow = new FollowRelation();
+
+            
+            // FollowRelation follow = new FollowRelation();
+            var follow = db.FollowRelation.Where( r => r.From == myUserId && r.To == userId).FirstOrDefault();
+            if(follow != null){
+                return Ok("Following user successfully");
+            }
+            follow = new FollowRelation();
             follow.From = myUserId;
             follow.To = userId;
             follow.CreateDate = DateTime.Now;
@@ -88,11 +96,15 @@ namespace MobileBackend.Controllers
             if (db.User.Find(userId) == null)
                 return BadRequest("UserId claim error, cannot find UserId");
 
-            FollowRelation follow = new FollowRelation();
-            follow.From = myUserId;
-            follow.To = userId;
-            db.FollowRelation.Remove(follow);
-            db.SaveChanges();
+            // FollowRelation follow = new FollowRelation();
+            var follow = db.FollowRelation.Where( r => r.From == myUserId && r.To == userId).FirstOrDefault();
+            // follow.From = myUserId;
+            // follow.To = userId;
+            if(follow != null){
+                db.FollowRelation.Remove(follow);
+                db.SaveChanges();
+            }
+            
             return Ok("Cancel the Follow relationship successfully");
         }
     }
