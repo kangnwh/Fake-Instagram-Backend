@@ -73,7 +73,6 @@ namespace MobileBackend.Controllers
                 return BadRequest("User name claim error, cannot find username");
             }
             
-            var myPosts = db.Post.Where( i=> i.UserId == userId).OrderByDescending(i => i.CreateDate).ToList();
             var pJson = (from p in db.Post
                             join i in db.Image on p.Id equals i.PostId
                             where p.UserId == userId 
@@ -86,15 +85,6 @@ namespace MobileBackend.Controllers
                             postTime = p.CreateDate,
                             comments = p.Comment
                         }).ToList();
-            var photoList = db.Image.Where(i => i.UserId == userId).OrderByDescending(i => i.CreateDate).ToList();
-
-            List<string> imgList = new List<string>();
-
-            foreach (Image photo in photoList){
-                // var onePhoto = new Dictionary<string, string>();
-                // onePhoto.Add("img",photo.ImageUrl);
-                imgList.Add(photo.ImageUrl);
-            }
             return new JsonResult ( pJson );
 
         }
