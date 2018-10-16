@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using MobileBackend.Model;
 using MobileBackend.Util;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace MobileBackend.Controllers
@@ -64,10 +65,26 @@ namespace MobileBackend.Controllers
         /// get the user who the current user are following
         /// [Authorization required]
         /// </summary>
-        [HttpPost("getFollowingUserList")]
-        public IActionResult GetFollowingUserList()
+        [HttpGet("getFollowingUserList")]
+        public IActionResult GetFollowingUserList(int id)
         {
             var userId = User.CurrentUserId();
+            var currentUserId = userId;
+
+            if(id > 0){
+                userId = id;
+            }
+
+            Debug.WriteLine($"userid={userId}");
+            
+            var currentUserFollowing = from fo in db.FollowRelation
+                    join u in db.User on fo.To equals u.Id
+                    where fo.From == currentUserId
+                    select new
+                    {
+                        currentFollowing = fo.To
+                    };
+
             var request = (
                     from fo in db.FollowRelation
                     join u in db.User on fo.To equals u.Id
@@ -75,7 +92,60 @@ namespace MobileBackend.Controllers
                     select new
                     {
                         userId = u.Id,
-                        userName = u.Username
+                        userName = u.Username,
+                        nickName = u.Name,
+                        avator = u.AvatarUrl,
+                        followedByCurrentUser = (from cu in currentUserFollowing
+                                                    where cu.currentFollowing == u.Id 
+                                                    select  1 ).FirstOrDefault()
+
+                    }
+                ).ToList();
+            return new JsonResult(request);
+        }
+
+
+        /// <summary>
+        /// Get current users followed by whom
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("getFollowedUserList")]
+        public IActionResult GetFollowedUserList(int id)
+        {
+            var userId = User.CurrentUserId();
+            var currentUserId = userId;
+            if(id > 0){
+                userId = id;
+            }
+
+            Debug.WriteLine($"userid={userId}");
+            
+            var currentUserFollowing = from fo in db.FollowRelation
+                    join u in db.User on fo.To equals u.Id
+                    where fo.From == currentUserId
+                    select new
+                    {
+                        currentFollowing = fo.To
+                    };
+
+            var request = (
+                    from fo in db.FollowRelation
+                    join u in db.User on fo.From equals u.Id
+                    // join currentUserFo in db.FollowRelation 
+                    //     on post.postId equals likes.PostId into lempty
+                    //     from likes in lempty.DefaultIfEmpty()
+                    where fo.To == userId
+                    select new
+                    {
+                        userId = u.Id,
+                        userName = u.Username,
+                        nickName = u.Name,
+                        avator = u.AvatarUrl,
+                        followedByCurrentUser = (from cu in currentUserFollowing
+                                                    where cu.currentFollowing == u.Id 
+                                                    select  1 ).FirstOrDefault()
+
                     }
                 ).ToList();
             return new JsonResult(request);

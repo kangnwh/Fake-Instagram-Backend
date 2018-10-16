@@ -78,6 +78,57 @@ namespace MobileBackend.Controllers
             return BadRequest("Upload failed");
         }
 
+        [HttpPost("uploadAvator")]
+
+        public async System.Threading.Tasks.Task<IActionResult> UploadAvatorAsync(IFormFile file)
+        {
+            var uploads = Path.Combine(env.WebRootPath, "photos");
+            if (file.Length > 0)
+            {
+                var userId = User.CurrentUserId();
+                var FileName = $"{userId}{DateTime.Now.ToString("yyyy_MM_ddTHH_mm_ss")}{file.FileName}";
+                using (var fileStream = new FileStream(Path.Combine(uploads, FileName), FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                    var createDate = DateTime.Now;
+                    var newPost = new Post
+                    {
+                        UserId = userId,
+                        Content = "",
+                        Location = "",
+                        CreateDate = createDate
+                    };
+
+                    var image = new Image
+                    {
+                        Post = newPost,
+                        UserId = userId,
+                        CreateDate = createDate,
+                        ImageUrl = FileName
+                    };
+                    try
+                    {
+                        var u = db.User.Find(userId);
+                        u.AvatarUrl = FileName;
+                        db.Entry(u).State = EntityState.Modified;
+                        db.Post.Add(newPost);
+                        db.Image.Add(image);
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException e)
+                    {
+                        //This either returns a error string, or null if it can’t handle that error
+
+                        Debug.WriteLine(e.ToString());
+                        return BadRequest("upload failed"); //return the error string
+
+                        // throw; //couldn’t handle that error, so rethrow
+                    }
+                    return Ok("Upload successfully");
+                }
+            }
+            return BadRequest("Upload failed");
+        }
 
     }
 }

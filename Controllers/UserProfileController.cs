@@ -30,14 +30,14 @@ namespace MobileBackend.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("poststat")]
-        public IActionResult PostStat()
+        public IActionResult PostStat(int id = -1)
         {   
             // Use this to get username
             // var userName = User.CurrentUserName();
             var userId = User.CurrentUserId();
-            if(userId < 0) 
+            if(id > 0) 
             {
-                return BadRequest("User Id claim error, cannot find username");
+                userId = id;
             }
             
 
@@ -61,11 +61,11 @@ namespace MobileBackend.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("myphotos")]
-        public IActionResult MyPhotos(int uId = -1)
+        public IActionResult MyPhotos(int id = -1)
         {   
             var userId = User.CurrentUserId();
-            if(uId > 0){
-                userId = uId ;
+            if(id > 0){
+                userId = id ;
             }
             
             if(userId < 0) 
@@ -76,6 +76,7 @@ namespace MobileBackend.Controllers
             var myPosts = db.Post.Where( i=> i.UserId == userId).OrderByDescending(i => i.CreateDate).ToList();
             var pJson = (from p in db.Post
                             join i in db.Image on p.Id equals i.PostId
+                            where p.UserId == userId 
                         select new {
                             postUserId = p.UserId,
                             postId = p.Id,

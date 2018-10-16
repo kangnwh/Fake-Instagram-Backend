@@ -48,25 +48,27 @@ namespace MobileBackend.Controllers
                             select new {
                                 userId = u.Id,
                                 userName = u.Username,
-                                avatarUrl = u.AvatarUrl,
+                                nickName = u.Name,
+                                avator = u.AvatarUrl
+                                // followedByCurrentUser = null
                             };
 
             // TODO 
             // Need apply algorithm
 
-            return new JsonResult ( new { users = suggest.ToList()} );
+            return new JsonResult ( suggest.ToList() );
         }
 
 
         /// <summary>
         /// let user to follow other user
         /// </summary>
-        [HttpPost("followUser")]
+        [HttpGet("followUser")]
         public IActionResult FollowUser(int userId)
         {
             var myUserId = User.CurrentUserId();
             if (db.User.Find(userId) == null)
-                return BadRequest("UserId claim error, cannot find UserId");
+                return BadRequest($"Cannot find UserId {userId}");
             FollowRelation follow = new FollowRelation();
             follow.From = myUserId;
             follow.To = userId;
@@ -79,12 +81,13 @@ namespace MobileBackend.Controllers
         /// <summary>
         /// let user to cancel the follow relationship with other user
         /// </summary>
-        [HttpPost("cancelFollowUser")]
+        [HttpGet("cancelFollowUser")]
         public IActionResult CancelFollowUser(int userId)
         {
             var myUserId = User.CurrentUserId();
             if (db.User.Find(userId) == null)
                 return BadRequest("UserId claim error, cannot find UserId");
+
             FollowRelation follow = new FollowRelation();
             follow.From = myUserId;
             follow.To = userId;
