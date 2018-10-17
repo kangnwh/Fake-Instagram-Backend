@@ -107,5 +107,44 @@ namespace MobileBackend.Controllers
             
             return Ok("Cancel the Follow relationship successfully");
         }
+
+        /// <summary>
+        /// let user to cancel the follow relationship with other user
+        /// </summary>
+        [HttpGet("queryUser")]
+        public IActionResult QueryUser(string username)
+        {
+            var currentUserId = User.CurrentUserId();
+
+            var currentUserFollowing = from fo in db.FollowRelation
+                    join u in db.User on fo.To equals u.Id
+                    where fo.From == currentUserId
+                    select new
+                    {
+                        currentFollowing = fo.To
+                    };
+
+
+            var queryUser = from u in db.User
+                            where u.Username.Contains(username, StringComparison.OrdinalIgnoreCase)
+                            select new {
+                                 userId = u.Id,
+                                    userName = u.Username,
+                                    nickName = u.Name,
+                                    avator = u.AvatarUrl,
+                                    followedByCurrentUser = (from cu in currentUserFollowing
+                                                                where cu.currentFollowing == u.Id 
+                                                                select  1 ).FirstOrDefault()
+                            };
+            
+            // db.User.Where( u => u.Username.Contains(username, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            // if (queryUser == null)
+            //     return Ok("User not found");
+
+            
+            return new JsonResult (queryUser);
+        }
+
+
     }
 }

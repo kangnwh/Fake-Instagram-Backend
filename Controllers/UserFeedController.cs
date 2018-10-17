@@ -9,6 +9,7 @@ using MobileBackend.Model;
 using MobileBackend.Util;
 
 using System;
+using MobileBackend.Forms;
 
 namespace MobileBackend.Controllers
 {
@@ -56,7 +57,7 @@ namespace MobileBackend.Controllers
         /// del "like" from UserLikePost table
         /// [Authorization required]
         /// </summary>
-        [HttpPost("dislikePhoto")]
+        [HttpDelete("dislikePhoto")]
         public IActionResult DislikePhoto(int postId)
         {
             var userId = User.CurrentUserId();
@@ -82,23 +83,30 @@ namespace MobileBackend.Controllers
         /// [Authorization required]
         /// </summary>
         [HttpPost("comment")]
-        public IActionResult Comment(int postId, string commentContent)
+        public IActionResult Comment([FromBody] CommentForm commentForm)
         {
             var userId = User.CurrentUserId();
-            if (postId < 0)
-                return BadRequest("PostId claim error, cannot find PostID");
-            if (db.Post.Find(postId) == null)
-                return BadRequest("PostId claim error, cannot find PostID");
+            if (commentForm.postId < 0)
+                return BadRequest("PostId invalid, cannot find PostID");
+            
+            var p = db.Post.Where( r => r.Id == commentForm.postId).FirstOrDefault();
+            if (p == null)
+                return BadRequest("PostId invalid, cannot find PostID");
 
             Comment comment = new Comment();
-            comment.PostId = postId;
+            comment.PostId = commentForm.postId;
             comment.UserId = userId;
+            var commentContent = commentForm.commentContent;
+
             if (String.IsNullOrEmpty(commentContent))
-                commentContent = "";
+                comment.Content = "";
+                
             if (commentContent.Length < 100)
-                comment.Content = commentContent;
+                comment.Content = commentForm.commentContent;
+
             if (commentContent.Length >= 100)
                 return BadRequest("Your comment is too long. Comment's content is limited within 100 characters.");
+
             comment.CreateDate = DateTime.Now;
             db.Comment.Add(comment);
             db.SaveChanges();
