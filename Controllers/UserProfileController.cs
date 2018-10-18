@@ -40,13 +40,14 @@ namespace MobileBackend.Controllers
                 userId = id;
             }
             
-
+            var username = db.User.Find(userId).Username;
             var postCount = db.Post.Where(p => p.UserId == userId).Count();
             var followerCount = db.FollowRelation.Where( f => f.To == userId).Count();
             var followingCount = db.FollowRelation.Where(f => f.From == userId).Count();
             var avatar = db.User.Find(userId).AvatarUrl;
 
             var resultDict = new Dictionary<string, object>();
+            resultDict.Add("username",username);
             resultDict.Add("postCount",postCount);
             resultDict.Add("followerCount",followerCount);
             resultDict.Add("followingCount",followingCount);
