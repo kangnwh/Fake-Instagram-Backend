@@ -125,7 +125,7 @@ namespace MobileBackend.Controllers
                     join fo in db.FollowRelation on u.Id equals fo.To
                     join po in db.Post on u.Id equals po.UserId
                     join image in db.Image on po.Id equals image.PostId
-                     where fo.From == userId 
+                     where fo.From == userId || po.UserId == u.Id
                     orderby po.CreateDate descending
                     select new {
                         postUserId = u.Id,
@@ -139,15 +139,6 @@ namespace MobileBackend.Controllers
                     }
                     ).Take(10).ToList();
             var r2 = (from post in r1
-                    // join com in db.Comment on post.postId equals com.PostId into comEmpty
-                    //     from com in comEmpty.DefaultIfEmpty()
-
-                    // join likes in db.UserLikePost 
-                    //     on post.postId equals likes.PostId into lempty
-                    //     from likes in lempty.DefaultIfEmpty()
-
-                    // join likeUser in db.User on likes.UserId equals likeUser.Id into lkuserEmpty
-                    //     from likeUser in lkuserEmpty.DefaultIfEmpty()
                     select new {
                         postuserId = post.postUserId,
                         postUsername = post.postUsername,
@@ -174,22 +165,6 @@ namespace MobileBackend.Controllers
 
                     }
             ).ToList();
-
-            // var r = (from u in db.User
-            //         join fo in db.FollowRelation on u.Id equals fo.To
-            //         join po in db.Post on u.Id equals po.UserId
-            //         join image in db.Image on po.Id equals image.PostId
-            //         join com in db.Comment on po.Id equals com.PostId
-            //         join likes in db.UserLikePost on po.Id equals likes.PostId
-            //         join likeUser in db.User on likes.UserId equals likeUser.Id
-
-            //         where fo.From == userId 
-            //         orderby po.CreateDate 
-            //         select new {
-            //             postUserId = u.Id,
-            //             postId = po.Id,
-            //             img = image.ImageUrl,
-            //         }).Take(10).ToList();
 
             return new JsonResult ( r2 );
         }
