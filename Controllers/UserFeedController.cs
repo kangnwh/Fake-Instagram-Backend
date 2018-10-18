@@ -125,7 +125,7 @@ namespace MobileBackend.Controllers
                     join fo in db.FollowRelation on u.Id equals fo.To
                     join po in db.Post on u.Id equals po.UserId
                     join image in db.Image on po.Id equals image.PostId
-                     where fo.From == userId || po.UserId == u.Id
+                     where fo.From == userId // || po.UserId == u.Id
                     orderby po.CreateDate descending
                     select new {
                         postUserId = u.Id,
@@ -138,6 +138,7 @@ namespace MobileBackend.Controllers
                         postLocation = po.Location,
                     }
                     ).Take(10).ToList();
+
             var r2 = (from post in r1
                     select new {
                         postuserId = post.postUserId,
