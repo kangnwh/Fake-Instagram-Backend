@@ -29,8 +29,8 @@ CREATE TABLE `FollowRelation` (
   PRIMARY KEY (`from`,`to`),
   KEY `fk_User_has_User_User2_idx` (`to`),
   KEY `fk_User_has_User_User1_idx` (`from`),
-  CONSTRAINT `fk_User_has_User_User1` FOREIGN KEY (`from`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_User_has_User_User2` FOREIGN KEY (`to`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_User_has_User_User1` FOREIGN KEY (`from`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_User_has_User_User2` FOREIGN KEY (`to`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -61,8 +61,8 @@ CREATE TABLE `Image` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_Image_Post1_idx` (`postId`),
   KEY `fk_Image_User1_idx` (`userId`),
-  CONSTRAINT `fk_Image_Post1` FOREIGN KEY (`postId`) REFERENCES `Post` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Image_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Image_Post1` FOREIGN KEY (`postId`) REFERENCES `Post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_Image_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -94,7 +94,7 @@ CREATE TABLE `Post` (
   PRIMARY KEY (`id`,`userId`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_Post_User1_idx` (`userId`),
-  CONSTRAINT `fk_Post_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Post_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -157,8 +157,8 @@ CREATE TABLE `UserLikePost` (
   PRIMARY KEY (`userId`,`postId`,`Post_userId`),
   KEY `fk_User_has_Post_Post1_idx` (`postId`,`Post_userId`),
   KEY `fk_User_has_Post_User1_idx` (`userId`),
-  CONSTRAINT `fk_User_has_Post_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_User_has_Post_Post1` FOREIGN KEY (`postId`, `Post_userId`) REFERENCES `Post` (`id`, `userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_User_has_Post_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_User_has_Post_Post1` FOREIGN KEY (`postId`, `Post_userId`) REFERENCES `Post` (`id`, `userId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -189,8 +189,8 @@ CREATE TABLE `comment` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_comment_Post1_idx` (`postId`),
   KEY `fk_comment_User1_idx` (`userId`),
-  CONSTRAINT `fk_comment_Post1` FOREIGN KEY (`postId`) REFERENCES `Post` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_comment_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_comment_Post1` FOREIGN KEY (`postId`) REFERENCES `Post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_comment_User1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
