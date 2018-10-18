@@ -75,7 +75,7 @@ namespace MobileBackend.Controllers
             // FollowRelation follow = new FollowRelation();
             var follow = db.FollowRelation.Where( r => r.From == myUserId && r.To == userId).FirstOrDefault();
             if(follow != null){
-                return Ok("Following user successfully");
+                return BadRequest("User already follows this user.");
             }
             follow = new FollowRelation();
             follow.From = myUserId;
@@ -100,11 +100,13 @@ namespace MobileBackend.Controllers
             var follow = db.FollowRelation.Where( r => r.From == myUserId && r.To == userId).FirstOrDefault();
             // follow.From = myUserId;
             // follow.To = userId;
-            if(follow != null){
-                db.FollowRelation.Remove(follow);
-                db.SaveChanges();
+            if(follow == null){
+                return BadRequest("User does not follow this user");
             }
             
+            db.FollowRelation.Remove(follow);
+            db.SaveChanges();
+
             return Ok("Cancel the Follow relationship successfully");
         }
 
