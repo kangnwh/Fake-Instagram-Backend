@@ -60,7 +60,7 @@ YouTube Link: https://youtu.be/xIZUexAuOMY
 
 ## Contributor
 
-1: [ningk1, ningk1@student.unimelb.edu.au] 
-2: [xlyu2, xlyu2@student.unimelb.edu.au] 
-3: [nianl, nianl@student.unimelb.edu.au] 
-4: [xwu11, xwu11@student.unimelb.edu.au] 
+- [ningk1, ningk1@student.unimelb.edu.au]
+- [xlyu2, xlyu2@student.unimelb.edu.au]
+- [nianl, nianl@student.unimelb.edu.au]
+- [xwu11, xwu11@student.unimelb.edu.au] 
