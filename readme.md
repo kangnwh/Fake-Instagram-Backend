@@ -1,6 +1,6 @@
 # Backend of Mobile Assignment 2
 
-- Using C# .net core webapi (version 2.1.402)
+This is the backend part (C# .net core - version 2.1.402) of Fake Instagram. This should be used together with [the app part] (https://github.com/kangnwh/Fake-Instagram).
 
 
 
@@ -31,29 +31,28 @@
 5. Install .net core SDK [Here](https://www.microsoft.com/net/download)
 
 
-#### workplace 
 
-Open [this](https://kangnwh.visualstudio.com/MobileBackend/MobileBackend%20Team/_dashboards/MobileBackend%20Team/8b20c756-4048-4b0d-ab5c-07cc380afb3e) for our project dashboard
+## How to run 
+
+- Our own server was shutdown so that you need to use your own server instead
+
+- If you want to test our backend together with our IOS app:
+
+    1. Download and install dotnet core SDK (version 2.1+) here (https://www.microsoft.com/net/download)
+2. Use a terminal to run backend service:
+
+    ```shell
+    cd $backend_dir
+    dotnet run
+    ```
+
+3. Please note that our database is also in that AWS server and you need to **use your local database**, you can create tables using `backend_dir/Model/dbinit.sql` AND change file `backend_dir/appsettings.json` to user your own db information.
 
 
-#### how to run (internal)
-```shell
-cd $your_project_folder
-dotnet watch run # use this in development, as app will restart when code is changed
-dotnet run # just run, only static files changes can be reflect real time
-```
 
+## Contributor
 
-
-#### Server Info
-db: 123.56.22.40:3306/sns/pw4mobile
-
-
-
-#### Pending Tasks
-
-- [ ] Requirement Analysis
-- [x] Database modelling
-- [ ] Api Design
-- [x] Security Control
-- [ ] Request Validation
+1: [ningk1, ningk1@student.unimelb.edu.au] 
+2: [xlyu2, xlyu2@student.unimelb.edu.au] 
+3: [nianl, nianl@student.unimelb.edu.au] 
+4: [xwu11, xwu11@student.unimelb.edu.au] 
